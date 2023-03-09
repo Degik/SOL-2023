@@ -126,11 +126,11 @@ void *Consumer(void *arg) {
     char *path_socket=malloc(sizeof(char)*(UNIX_PATH_MAX));
     char *aus=malloc(sizeof(char )*(UNIX_PATH_MAX));
 
-    llist *l = NULL;
+    //llist *l = NULL;
 
-    //struct llist *l= malloc(sizeof(llist));
-    //l->opzione=NULL;
-    //l->next=NULL;
+    struct llist *l= malloc(sizeof(llist));
+    l->opzione=NULL;
+    l->next=NULL;
 
     long sommatoria_risultato=0;
     size_t consumed=0;
@@ -169,11 +169,9 @@ void *Consumer(void *arg) {
                 canc(&l); // mi rimane l'ultimo elemento da fare la free
                 printf("DOPO RETURN");
                 print_list(l);
-                if(l != NULL){
-                    strncpy(aus,l->opzione, strlen(l->opzione)+1);
-                    strcat(aus,"/");
-                    strcat(aus,data);
-                }
+                strncpy(aus,l->opzione, strlen(l->opzione)+1);
+                strcat(aus,"/");
+                strcat(aus,data);
                 // printf("NEL WORKER: %s\n\n",aus);
             }
             else{ // caso in cui il file è senza path

@@ -262,6 +262,7 @@ void canc(llist** head){
     while(c>0){
         c=c-1;
         *head=cor->next;
+        free(cor->opzione);
         free(cor);
         cor=*head;
     }
